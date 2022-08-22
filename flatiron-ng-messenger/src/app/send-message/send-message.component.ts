@@ -8,18 +8,16 @@ import { LoggingService } from '../logging.service';
 })
 export class SendMessageComponent implements OnInit {
 
-  @Input()
   messageString: string;
 
-  loggingSvce = new LoggingService(); // create a new instance of the service
+  // declare the loggingSvce variable through the component's constructor
+  constructor(private loggingSvce: LoggingService) {}
 
   // use the instance of the logging service in our event handler
   onSendMessage() {
     this.loggingSvce.log("Send following message: ");
     this.loggingSvce.log(this.messageString);
   }
-
-  constructor() { }
 
   ngOnInit(): void {
   }

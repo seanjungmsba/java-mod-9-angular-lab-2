@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
@@ -17,6 +18,7 @@ import { LabelComponent } from './label/label.component';
 import { InputboxComponent } from './inputbox/inputbox.component';
 import { HeaderComponent } from './header/header.component';
 import { HighlightDirective } from './highlight.directive';
+import { LoggingService } from './logging.service';
 
 @NgModule({
   declarations: [
@@ -37,10 +39,8 @@ import { HighlightDirective } from './highlight.directive';
     HeaderComponent,
     HighlightDirective
   ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
+  imports: [BrowserModule, FormsModule],
+  providers: [LoggingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
