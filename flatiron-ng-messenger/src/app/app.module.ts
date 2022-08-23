@@ -21,6 +21,7 @@ import { HighlightDirective } from './highlight.directive';
 import { LoggingService } from './logging.service';
 import { HttpClientModule } from "@angular/common/http";
 import { MessagingDataService } from './messaging-data.service';
+import { MessageCountComponent } from './sender-message/message-count/message-count.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MessagingDataService } from './messaging-data.service';
     LabelComponent,
     InputboxComponent,
     HeaderComponent,
-    HighlightDirective
+    HighlightDirective,
+    MessageCountComponent
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule],
   providers: [LoggingService, MessagingDataService],
