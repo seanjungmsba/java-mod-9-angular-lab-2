@@ -19,6 +19,8 @@ import { InputboxComponent } from './inputbox/inputbox.component';
 import { HeaderComponent } from './header/header.component';
 import { HighlightDirective } from './highlight.directive';
 import { LoggingService } from './logging.service';
+import { HttpClientModule } from "@angular/common/http";
+import { MessagingDataService } from './messaging-data.service';
 
 @NgModule({
   declarations: [
@@ -39,8 +41,8 @@ import { LoggingService } from './logging.service';
     HeaderComponent,
     HighlightDirective
   ],
-  imports: [BrowserModule, FormsModule],
-  providers: [LoggingService],
+  imports: [BrowserModule, FormsModule, HttpClientModule],
+  providers: [LoggingService, MessagingDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

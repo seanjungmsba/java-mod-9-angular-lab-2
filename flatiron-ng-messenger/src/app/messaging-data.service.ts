@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { LoggingService } from "./logging.service";
 import { Message } from "./message.model";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class MessagingDataService {
@@ -20,14 +21,7 @@ export class MessagingDataService {
     },
   ];
 
-  private userMessages: Message[] = [
-    {
-      sender: { firstName: "Aurelie" },
-      text: "Message from Aurelie",
-      conversationId: 1,
-      sequenceNumber: 2,
-    },
-  ];
+  private userMessages: Message[] = [];
 
   userMessagesChanged = new EventEmitter<Message[]>();
 
@@ -36,6 +30,13 @@ export class MessagingDataService {
   }
 
   getUserMessages() {
+    this.httpClient.get<Message[]>("http://localhost:8080/api/get-user-messages").subscribe(
+        (messages: Message[]) => {
+            console.log(messages);
+            this.userMessages = messages;
+            this.userMessagesChanged.emit(this.userMessages);
+        }
+    )
     return this.userMessages.slice();
   }
 
@@ -44,7 +45,9 @@ export class MessagingDataService {
     this.userMessagesChanged.emit(this.userMessages.slice());
   }
 
-  constructor(private loggingSvce: LoggingService) {
-    loggingSvce.log("Messaging Data Service constructor completed");
-  }
+  constructor(
+    private loggingSvce: LoggingService,
+    private httpClient: HttpClient) {
+    loggingSvce.log("Messaging Data Service constructor completed");}
+
 }
